@@ -1,8 +1,8 @@
 class CharacterOne {
-  PVector loc;
+//  PVector loc;
 
   CharacterOne() {
-    loc = new PVector(50, 375);
+//    loc = new PVector(50, 375);
   }
 
 
@@ -18,7 +18,7 @@ class CharacterOne {
   }
  void time(){
   currentTime= millis();
-   if (currentTime-oldTime>500) {
+   if (currentTime-oldTime>1250) {
       loc.y=375;
   oldTime=currentTime;  
    }
