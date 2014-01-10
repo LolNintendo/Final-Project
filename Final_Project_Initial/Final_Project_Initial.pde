@@ -30,6 +30,8 @@ float dPressed;
 
 Pipe p1;
 
+boolean battle;
+
 void setup() {
 movePipe=0;
   pipeB=false;
@@ -43,9 +45,14 @@ movePipe=0;
   b2 = new Bush2();
   m1= new Mount();
   p1 = new Pipe();
+  
+  battle = false;
 }
 
 void draw() {
+   if(battle){
+   background(255);
+ }
   background(0, 0, 200);
   rectMode(CENTER);
   fill(0, 255, 0);
@@ -61,8 +68,9 @@ void draw() {
   p1.show();
   //println(bushNum);
   //println(millis());
-  println(pipeB);
- 
+  //println(pipeB);
+  println(battle);
+
 }
 
 void keyPressed() {

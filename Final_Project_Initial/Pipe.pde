@@ -1,9 +1,9 @@
 class Pipe {
-//  boolean pipeB;
+  //  boolean pipeB;
   PVector pipeLoc;
 
   Pipe() {
-  pipeB=false;
+    pipeB=false;
     pipeLoc = new PVector(width, height-125);
   } 
 
@@ -17,6 +17,9 @@ class Pipe {
       fill(0, 255, 0);
       rect(pipeLoc.x, pipeLoc.y, 100, 50);
       loc.x=loc.x+movePipe;
+    }
+    if (loc.dist(pipeLoc) < 25) {
+      battle = true;
     }
   }
 }
