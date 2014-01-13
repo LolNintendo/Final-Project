@@ -6,8 +6,8 @@ Project Members
 
 1. Project Manager-  Katarina Hermanova
 2. Code Monkey- Analis Arocho
-3. Graphics- Mike Lindal
-4. User Interface- Mike Lindal
+3. Graphics- Mike Lindnal
+4. User Interface- Mike Lindnal
 5. Bug Tester- Matt Sepe
 
 Description
