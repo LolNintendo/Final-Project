@@ -2,6 +2,8 @@ boolean pipeB;
 PVector loc;
 float movePipe;
 
+PVector flower;
+
 CharacterOne c;
 Cloud cl;
 float cloudNum;
@@ -27,7 +29,7 @@ float currentTime;
 float oldTime;
 
 float dPressed;
-
+ float clo;
 Pipe p1;
 
 boolean battle;
@@ -37,8 +39,13 @@ boolean tunnelEnd;
 
 BadGuy bg1;
 
+int finalRectX;
+
+boolean power;
+PVector pow;
 
 void setup() {
+flower= new PVector(250,375);
   movePipe=0;
   pipeB=false;
   loc = new PVector(50, 375);
@@ -57,12 +64,17 @@ void setup() {
   tunnelEnd = false;
   
   bg1 = new BadGuy();
+  
+  finalRectX = -25;
+  pow= new PVector(finalRectX,loc.y);
+  power = false;
 }
 
 void draw() {
   if (battle) {
     background(255);
   }
+ clo=0;
   background(0, 0, 200);
   rectMode(CENTER);
   fill(0, 255, 0);
@@ -79,7 +91,7 @@ void draw() {
   //println(bushNum);
   //println(millis());
   //println(pipeB);
-  println(battle);
+  //println(battle);
   if (battle==true) {
     background(0);
     rectMode(CORNERS);
@@ -87,7 +99,7 @@ void draw() {
     rect(0, 250, width, 410);
     rectMode(CENTER);
     fill(0);
-    rect(battleRectX, 375, 50, 50);
+    rect(battleRectX, loc.y, 50, 50);
     if (battleRectX < 50) {
       battleRectX+=movePipe;
     }
@@ -99,16 +111,34 @@ void draw() {
     }
     if (tunnelEnd == true) {
      
-      battleRectX = -25;
-        background(255);
+      rectMode(CENTER);
+      background(255);
+      fill(clo);
+      rect(finalRectX, loc.y, 50,50);
+      //  background(255);
         bg1.display();
         bg1.attack();
-      if (battleRectX < 50) {
-        battleRectX+=movePipe;
+    bg1.move();
+      if (finalRectX < 50) {
+        finalRectX+=movePipe;
       }
     }
   }
-  println(battleRectX);
+  if(battle==true){
+   fill(123,43,234);
+  rect(flower.x,flower.y,30,30); 
+    if(flower.x - battleRectX <= 40){
+     power = true;  
+  }
+  }
+  if(power==true){
+flower.x=600;
+clo = 255;
+    
+    
+  }
+  //println(finalRectX);
+  println(power);
 }
 
 void keyPressed() {
@@ -140,6 +170,11 @@ void keyPressed() {
   if (key== 'd' && battle == true) {
     battleRectX += 15;
   }
+if(key=='g' && power== true){
+ ellipse(pow.x+50,pow.y,50,50); 
+  
+  
+}
 }
 
 

@@ -8,7 +8,7 @@ class CharacterOne {
 
   void show() {
     rectMode( CENTER);
-    fill(0);
+    fill(clo);
     rect(loc.x, loc.y, 50, 50);
   }
 
@@ -18,7 +18,7 @@ class CharacterOne {
   }
  void time(){
   currentTime= millis();
-   if (currentTime-oldTime>1250) {
+   if (currentTime-oldTime>1000) {
       loc.y=375;
   oldTime=currentTime;  
    }

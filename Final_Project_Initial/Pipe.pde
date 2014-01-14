@@ -20,7 +20,7 @@ class Pipe {
     }
     if (loc.dist(pipeLoc) < 25) {
       battle = true;
-    }
-  }
+  } 
+}
 }
 
