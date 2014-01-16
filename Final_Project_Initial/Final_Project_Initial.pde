@@ -75,7 +75,7 @@ void setup() {
 }
 
 void draw() {
-  if (battle) {
+  if (battle == true) {
     background(255);
   }
   clo=0;

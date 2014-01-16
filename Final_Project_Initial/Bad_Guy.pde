@@ -23,7 +23,7 @@ class BadGuy {
     rectMode(CENTER);
     rect(badLoc.x, badLoc.y, 60, 60);
     //lives
-    if (badLoc.x-pow.x <= 50) {
+    if (badLoc.x-pow.x <= 20 &&  badLoc.y-pow.y <= 20) {
       badLives--;
       pow.x = finalRectX;
       fireNum=1;
