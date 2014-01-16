@@ -46,6 +46,9 @@ int fireNum;
 boolean power;
 PVector pow;
 
+PImage Bush1;
+
+
 void setup() {
   flower= new PVector(250, 375);
   fire=false;
@@ -72,6 +75,8 @@ void setup() {
   finalRectX = -25;
   pow= new PVector(finalRectX, loc.y);
   power = false;
+  
+  Bush1 = loadImage("Bush.png");
 }
 
 void draw() {

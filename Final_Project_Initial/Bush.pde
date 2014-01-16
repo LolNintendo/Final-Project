@@ -6,7 +6,7 @@ class Bush {
     bushLoc= new PVector(width+15, height-100);
   } 
   void show() {
-    ellipse(bushLoc.x, bushLoc.y, 30, 30);
+    image(Bush1, bushLoc.x, bushLoc.y);
     if (bushNum==1) {
       bushB=true;
     }
