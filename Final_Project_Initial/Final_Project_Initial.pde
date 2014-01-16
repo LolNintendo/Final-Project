@@ -1,3 +1,4 @@
+
 boolean pipeB;
 PVector loc;
 float movePipe;
@@ -29,7 +30,7 @@ float currentTime;
 float oldTime;
 
 float dPressed;
- float clo;
+float clo;
 Pipe p1;
 
 boolean battle;
@@ -40,12 +41,15 @@ boolean tunnelEnd;
 BadGuy bg1;
 
 int finalRectX;
-
+boolean fire;
+int fireNum;
 boolean power;
 PVector pow;
 
 void setup() {
-flower= new PVector(250,375);
+  flower= new PVector(250, 375);
+  fire=false;
+  fireNum=1;
   movePipe=0;
   pipeB=false;
   loc = new PVector(50, 375);
@@ -62,11 +66,11 @@ flower= new PVector(250,375);
   battle = false;
 
   tunnelEnd = false;
-  
+
   bg1 = new BadGuy();
-  
+
   finalRectX = -25;
-  pow= new PVector(finalRectX,loc.y);
+  pow= new PVector(finalRectX, loc.y);
   power = false;
 }
 
@@ -74,7 +78,7 @@ void draw() {
   if (battle) {
     background(255);
   }
- clo=0;
+  clo=0;
   background(0, 0, 200);
   rectMode(CENTER);
   fill(0, 255, 0);
@@ -110,35 +114,49 @@ void draw() {
       tunnelEnd = true;
     }
     if (tunnelEnd == true) {
-     
+
       rectMode(CENTER);
       background(255);
       fill(clo);
-      rect(finalRectX, loc.y, 50,50);
+      rect(finalRectX, loc.y, 50, 50);
       //  background(255);
-        bg1.display();
-        bg1.attack();
-    bg1.move();
+      bg1.display();
+      bg1.attack();
+      bg1.move();
       if (finalRectX < 50) {
         finalRectX+=movePipe;
       }
     }
+    //    if(fire==true &&){
+    //      ellipse(pow.x+50,pow.y,50,50); 
+    //      pow.x= pow.x+15;
+    //    }
   }
-  if(battle==true){
-   fill(123,43,234);
-  rect(flower.x,flower.y,30,30); 
-    if(flower.x - battleRectX <= 40){
-     power = true;  
+  if (battle==true) {
+    fill(123, 43, 234);
+    rect(flower.x, flower.y, 30, 30); 
+    if (flower.x - battleRectX <= 40) {
+      power = true;
+    }
   }
-  }
-  if(power==true){
-flower.x=600;
-clo = 255;
-    
-    
+  if (power==true) {
+    flower.x=600;
+    clo = 255;
   }
   //println(finalRectX);
-  println(power);
+  //println(power);
+  if (fireNum%2==0) {
+  ellipse(pow.x+50, pow.y, 50, 50); 
+        pow.x= pow.x+15;
+  }
+if(pow.x>500){
+ fireNum=1; 
+ fire=false;
+ pow.x=finalRectX;
+}
+println(fireNum);
+println(fire);
+
 }
 
 void keyPressed() {
@@ -170,11 +188,12 @@ void keyPressed() {
   if (key== 'd' && battle == true) {
     battleRectX += 15;
   }
-if(key=='g' && power== true){
- ellipse(pow.x+50,pow.y,50,50); 
-  
-  
-}
+  if (key=='g' && power== true) {
+    fire= true;
+    if (fire==true) {
+      fireNum+=1;
+    }
+  }
 }
 
 
