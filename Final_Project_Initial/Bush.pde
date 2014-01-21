@@ -3,7 +3,7 @@ class Bush {
   boolean bushB;
   Bush() {
     bushB=false;
-    bushLoc= new PVector(width+15, height-100);
+    bushLoc= new PVector(width+50, height-115);
   } 
   void show() {
     image(Bush1, bushLoc.x, bushLoc.y);
@@ -19,7 +19,7 @@ class Bush {
       bushB=false;
     }
     if (bushB==false) { 
-      bushLoc.x=width+25;
+      bushLoc.x=width+50;
     }
   }
 }

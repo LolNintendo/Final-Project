@@ -48,6 +48,10 @@ PVector pow;
 
 PImage Bush1;
 
+PImage startFloor;
+
+PImage Cloud1;
+
 
 void setup() {
   flower= new PVector(250, 375);
@@ -77,17 +81,17 @@ void setup() {
   power = false;
   
   Bush1 = loadImage("Bush.png");
+  
+  startFloor = loadImage("Start Level Floor.png");
+  
+  Cloud1 = loadImage("Cloud1.png");
 }
 
 void draw() {
-  if (battle == true) {
-    background(255);
-  }
   clo=0;
-  background(0, 0, 200);
-  rectMode(CENTER);
-  fill(0, 255, 0);
-  rect(width/2, height-50, 800, 100);
+  background(107, 136, 254);
+  imageMode(CORNERS);
+  image(startFloor,0, -405,width,height);
   c.show();
   c.time();
   //println(cloudNum);
