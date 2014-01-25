@@ -3,7 +3,7 @@ class Cloud {
   boolean cloudB;
   Cloud() {
     cloudB=false;
-    cloudLoc= new PVector(width+50, 50);
+    cloudLoc= new PVector(width+100, 50);
   } 
   void show() {
     imageMode(CENTER);
@@ -21,7 +21,7 @@ cloudMove=0;
       cloudB=false;
     }
     if (cloudB==false) { 
-      cloudLoc.x=width+50;
+      cloudLoc.x=width+100;
     }
   }
 }

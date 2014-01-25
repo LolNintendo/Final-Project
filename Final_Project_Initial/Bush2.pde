@@ -3,11 +3,11 @@ class Bush2 {
   boolean bushB;
   Bush2() {
     bushB=false;
-    bushLoc= new PVector(width+15, height-100);
+    bushLoc= new PVector(width+100, height-155);
   } 
   void show() {
-    ellipse(bushLoc.x, bushLoc.y, 30, 30);
-     ellipse(bushLoc.x+15, bushLoc.y, 30, 30);
+    imageMode(CENTER);
+    image(Bush2, bushLoc.x, bushLoc.y);
     if (bushTwoNum==1) {
       bushB=true;
     }
@@ -20,7 +20,7 @@ class Bush2 {
       bushB=false;
     }
     if (bushB==false) { 
-      bushLoc.x=width+25;
+      bushLoc.x=width+100;
     }
   }
 }

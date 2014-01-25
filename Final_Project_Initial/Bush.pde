@@ -6,6 +6,7 @@ class Bush {
     bushLoc= new PVector(width+50, height-115);
   } 
   void show() {
+    imageMode(CENTER);
     image(Bush1, bushLoc.x, bushLoc.y);
     if (bushNum==1) {
       bushB=true;

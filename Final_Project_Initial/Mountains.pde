@@ -3,11 +3,11 @@ class Mount {
   boolean mountB;
   Mount() {
     mountB=false;
-    mountLoc= new PVector(width+15, height-130);
+    mountLoc= new PVector(width+60, height-172);
   } 
   void show() {
-    rectMode(CENTER);
-    rect(mountLoc.x, mountLoc.y, 30, 60);
+    imageMode(CENTER);
+    image(Mount, mountLoc.x, mountLoc.y);
     if (mountNum==1) {
       mountB=true;
     }
@@ -20,7 +20,7 @@ class Mount {
       mountB=false;
     }
     if (mountB==false) { 
-      mountLoc.x=width+25;
+      mountLoc.x=width+60;
     }
   }
 }

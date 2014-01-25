@@ -47,10 +47,28 @@ boolean power;
 PVector pow;
 
 PImage Bush1;
+PImage Bush2;
 
 PImage startFloor;
+PImage Mount;
+
+PImage badGuy1;
 
 PImage Cloud1;
+PImage Cloud2;
+
+//characters
+PImage sonicRun;
+PImage marioRun;
+PImage sonicJump;
+PImage marioJump;
+PImage kirbyRun;
+PImage kirbyJump;
+
+PImage bowser;
+PImage fireBall;
+PImage powerStar;
+
 
 
 void setup() {
@@ -81,10 +99,28 @@ void setup() {
   power = false;
   
   Bush1 = loadImage("Bush.png");
+  Bush2 = loadImage("Bush2.png");
   
   startFloor = loadImage("Start Level Floor.png");
+  Mount = loadImage("Mount.png");
+  
+  badGuy1 = loadImage("Bad Guy1.png");
   
   Cloud1 = loadImage("Cloud1.png");
+  Cloud2 = loadImage("Cloud2.png");
+  
+  //character images
+  sonicRun = loadImage("sonicRun.png");
+  marioRun = loadImage("marioRun.png");
+  sonicJump = loadImage("sonicJump.png");
+  marioJump = loadImage("marioJump.jpg");
+  kirbyRun = loadImage("kirbyRun.png");
+  kirbyJump = loadImage("kirbyJump.png");
+  
+  bowser = loadImage("Bowser.png");
+  fireBall = loadImage("Fire.png");
+  powerStar = loadImage("Power.png");
+
 }
 
 void draw() {
