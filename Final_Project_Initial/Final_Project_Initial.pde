@@ -69,7 +69,10 @@ PImage bowser;
 PImage fireBall;
 PImage powerStar;
 
+boolean start;
+boolean instructions;
 
+PImage startScreen;
 
 void setup() {
   flower= new PVector(250, 375);
@@ -97,18 +100,18 @@ void setup() {
   finalRectX = -25;
   pow= new PVector(finalRectX, loc.y);
   power = false;
-  
+
   Bush1 = loadImage("Bush.png");
   Bush2 = loadImage("Bush2.png");
-  
+
   startFloor = loadImage("Start Level Floor.png");
   Mount = loadImage("Mount.png");
-  
+
   badGuy1 = loadImage("Bad Guy1.png");
-  
+
   Cloud1 = loadImage("Cloud1.png");
   Cloud2 = loadImage("Cloud2.png");
-  
+
   //character images
   sonicRun = loadImage("sonicRun.png");
   marioRun = loadImage("marioRun.png");
@@ -116,92 +119,129 @@ void setup() {
   marioJump = loadImage("marioJump.jpg");
   kirbyRun = loadImage("kirbyRun.png");
   kirbyJump = loadImage("kirbyJump.png");
-  
+
   bowser = loadImage("Bowser.png");
   fireBall = loadImage("Fire.png");
   powerStar = loadImage("Power.png");
 
+  start = false;
+  startScreen = loadImage("Start Screen.jpeg");
+  instructions = false;
 }
 
 void draw() {
-  clo=0;
-  background(107, 136, 254);
   imageMode(CORNERS);
-  image(startFloor,0, -405,width,height);
-  c.show();
-  c.time();
-  //println(cloudNum);
-  cl.show();
-  c2.show();
-  b1.show();
-  b2.show();
-  m1.show();
-  p1.show();
-  //println(bushNum);
-  //println(millis());
-  //println(pipeB);
-  //println(battle);
-  if (battle==true) {
-    background(0);
-    rectMode(CORNERS);
-    fill(150);
-    rect(0, 250, width, 410);
-    rectMode(CENTER);
-    fill(0);
-    rect(battleRectX, loc.y, 50, 50);
-    if (battleRectX < 50) {
-      battleRectX+=movePipe;
-    }
-    if (battleRectX >= 400) {
-      battleRectX+=movePipe;
-    }
-    if (battleRectX >= width) {
-      tunnelEnd = true;
-    }
-    if (tunnelEnd == true) {
+  image(startScreen, 0, 0, width, height);
 
+  //start button 
+  rectMode(CENTER);
+  fill(75, 196, 88);
+  rect(375, 355, 100, 50);
+  fill(255);
+  textAlign(CENTER);
+  textSize(40);
+  text("Info", 375, 370);
+
+  //info button
+  rectMode(CENTER);
+  fill(75, 196, 88);
+  rect(225, 355, 100, 50);
+  fill(255);
+  textAlign(CENTER);
+  textSize(40);
+  text("Start", 225, 370);
+
+  if (instructions == true) {
+    background(0);
+    //home button
+    rectMode(CENTER);
+    fill(75, 196, 88);
+    rect(375, 425, 125, 50);
+    fill(255);
+    textAlign(CENTER);
+    textSize(40);
+    text("Home", 375, 440);
+  }
+
+  else if (start == true) {
+    clo=0;
+    background(107, 136, 254);
+    imageMode(CORNERS);
+    image(startFloor, 0, -405, width, height);
+    c.show();
+    c.time();
+    //println(cloudNum);
+    cl.show();
+    c2.show();
+    b1.show();
+    b2.show();
+    m1.show();
+    p1.show();
+    //println(bushNum);
+    //println(millis());
+    //println(pipeB);
+    //println(battle);
+    if (battle==true) {
+      background(0);
+      rectMode(CORNERS);
+      fill(150);
+      rect(0, 250, width, 410);
       rectMode(CENTER);
-      background(255);
-      fill(clo);
-      rect(finalRectX, loc.y, 50, 50);
-      //  background(255);
-      bg1.display();
-      bg1.attack();
-      bg1.move();
-      if (finalRectX < 50) {
-        finalRectX+=movePipe;
+      fill(0);
+      rect(battleRectX, loc.y, 50, 50);
+      if (battleRectX < 50) {
+        battleRectX+=movePipe;
+      }
+      if (battleRectX >= 400) {
+        battleRectX+=movePipe;
+      }
+      if (battleRectX >= width) {
+        tunnelEnd = true;
+      }
+      if (tunnelEnd == true) {
+
+        rectMode(CENTER);
+        background(255);
+        fill(clo);
+        rect(finalRectX, loc.y, 50, 50);
+        //  background(255);
+        bg1.display();
+        bg1.attack();
+        bg1.move();
+        if (finalRectX < 50) {
+          finalRectX+=movePipe;
+        }
+      }
+      //    if(fire==true &&){
+      //      ellipse(pow.x+50,pow.y,50,50); 
+      //      pow.x= pow.x+15;
+      //    }
+    }
+    if (battle==true) {
+      fill(123, 43, 234);
+      rect(flower.x, flower.y, 30, 30); 
+      if (flower.x - battleRectX <= 40) {
+        power = true;
       }
     }
-    //    if(fire==true &&){
-    //      ellipse(pow.x+50,pow.y,50,50); 
-    //      pow.x= pow.x+15;
-    //    }
-  }
-  if (battle==true) {
-    fill(123, 43, 234);
-    rect(flower.x, flower.y, 30, 30); 
-    if (flower.x - battleRectX <= 40) {
-      power = true;
+    if (power==true) {
+      flower.x=600;
+      clo = 255;
     }
+    //println(finalRectX);
+    //println(power);
+    if (fireNum%2==0) {
+      ellipse(pow.x+50, pow.y, 50, 50); 
+      pow.x= pow.x+15;
+    }
+    if (pow.x>500) {
+      fireNum=1; 
+      fire=false;
+      pow.x=finalRectX;
+    }
+    println(fireNum);
+    println(fire);
   }
-  if (power==true) {
-    flower.x=600;
-    clo = 255;
-  }
-  //println(finalRectX);
-  //println(power);
-  if (fireNum%2==0) {
-  ellipse(pow.x+50, pow.y, 50, 50); 
-        pow.x= pow.x+15;
-  }
-if(pow.x>500){
- fireNum=1; 
- fire=false;
- pow.x=finalRectX;
-}
-println(fireNum);
-println(fire);
-
 }
 
 void keyPressed() {
@@ -209,9 +249,9 @@ void keyPressed() {
     dPressed+=1;
     //everytime the button is pressed a random number appears for all classes, if their number is chosen then they appear
     //this one is specifically for clouds
-    cloudNum= int(random(18));
+    cloudNum= int(random(10));
     cloudMove=60;
-    cloudTwoNum = int(random(18));
+    cloudTwoNum = int(random(10));
     cloudTwoMove = 70;
 
     //this is for bush
@@ -241,11 +281,17 @@ void keyPressed() {
   }
 }
 
+void mousePressed() {
+  if (mouseX > 175 && mouseX <275 && mouseY > 330 && mouseY < 380) {
+    start = !start;
+  }
+  if (mouseX > 325 && mouseX <425 && mouseY > 330 && mouseY < 380) {
+    instructions = !instructions;
+  }
+}
 
 
 
 
-//FIXXXXX
-//CHARACTER ON BATTLE SCREEN
-//BAD GUY ACTIONS
 
+//info button
