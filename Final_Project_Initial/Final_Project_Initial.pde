@@ -46,6 +46,7 @@ int fireNum;
 boolean power;
 PVector pow;
 
+
 PImage Bush1;
 PImage Bush2;
 
@@ -69,6 +70,9 @@ PImage bowser;
 PImage fireBall;
 PImage powerStar;
 
+
+
+boolean start;
 
 
 void setup() {
@@ -97,6 +101,7 @@ void setup() {
   finalRectX = -25;
   pow= new PVector(finalRectX, loc.y);
   power = false;
+
   
   Bush1 = loadImage("Bush.png");
   Bush2 = loadImage("Bush2.png");
@@ -146,63 +151,105 @@ void draw() {
     rectMode(CORNERS);
     fill(150);
     rect(0, 250, width, 410);
-    rectMode(CENTER);
-    fill(0);
-    rect(battleRectX, loc.y, 50, 50);
-    if (battleRectX < 50) {
-      battleRectX+=movePipe;
-    }
-    if (battleRectX >= 400) {
-      battleRectX+=movePipe;
-    }
-    if (battleRectX >= width) {
-      tunnelEnd = true;
-    }
-    if (tunnelEnd == true) {
 
-      rectMode(CENTER);
+
+  start = false;
+}
+
+
+  rectMode(CENTER);
+  fill(0,255,0);
+  rect(width/2,height/2,100,50);
+  fill(0);
+  textAlign(CENTER);
+    textSize(20);
+    text("Start", width/2, height/2);   
+  if(start) {
+    if (battle == true) {
       background(255);
-      fill(clo);
-      rect(finalRectX, loc.y, 50, 50);
-      //  background(255);
-      bg1.display();
-      bg1.attack();
-      bg1.move();
-      if (finalRectX < 50) {
-        finalRectX+=movePipe;
+    }
+    clo=0;
+    background(0, 0, 200);
+
+    rectMode(CENTER);
+    fill(0, 255, 0);
+    rect(width/2, height-50, 800, 100);
+    c.show();
+    c.time();
+    //println(cloudNum);
+    cl.show();
+    c2.show();
+    b1.show();
+    b2.show();
+    m1.show();
+    p1.show();
+    //println(bushNum);
+    //println(millis());
+    //println(pipeB);
+    //println(battle);
+    if (battle==true) {
+      background(0);
+      rectMode(CORNERS);
+      fill(150);
+      rect(0, 250, width, 410);
+      rectMode(CENTER);
+      fill(0);
+      rect(battleRectX, loc.y, 50, 50);
+      if (battleRectX < 50) {
+        battleRectX+=movePipe;
+      }
+      if (battleRectX >= 400) {
+        battleRectX+=movePipe;
+      }
+      if (battleRectX >= width) {
+        tunnelEnd = true;
+      }
+      if (tunnelEnd == true) {
+
+        rectMode(CENTER);
+        background(255);
+        fill(clo);
+        rect(finalRectX, loc.y, 50, 50);
+        //  background(255);
+        bg1.display();
+        bg1.attack();
+        bg1.move();
+        if (finalRectX < 50) {
+          finalRectX+=movePipe;
+        }
+      }
+      //    if(fire==true &&){
+      //      ellipse(pow.x+50,pow.y,50,50); 
+      //      pow.x= pow.x+15;
+      //    }
+    }
+    if (battle==true) {
+      fill(123, 43, 234);
+      rect(flower.x, flower.y, 30, 30); 
+      if (flower.x - battleRectX <= 40) {
+        power = true;
       }
     }
-    //    if(fire==true &&){
-    //      ellipse(pow.x+50,pow.y,50,50); 
-    //      pow.x= pow.x+15;
-    //    }
-  }
-  if (battle==true) {
-    fill(123, 43, 234);
-    rect(flower.x, flower.y, 30, 30); 
-    if (flower.x - battleRectX <= 40) {
-      power = true;
+    if (power==true) {
+      flower.x=600;
+      clo = 255;
     }
+    //println(finalRectX);
+    //println(power);
+    if (fireNum%2==0) {
+      ellipse(pow.x+50, pow.y, 50, 50); 
+      pow.x= pow.x+15;
+    }
+    if (pow.x>500) {
+      fireNum=1; 
+      fire=false;
+      pow.x=finalRectX;
+    }
+    println(fireNum);
+    println(fire);
   }
-  if (power==true) {
-    flower.x=600;
-    clo = 255;
-  }
-  //println(finalRectX);
-  //println(power);
-  if (fireNum%2==0) {
-  ellipse(pow.x+50, pow.y, 50, 50); 
-        pow.x= pow.x+15;
-  }
-if(pow.x>500){
- fireNum=1; 
- fire=false;
- pow.x=finalRectX;
 }
-println(fireNum);
-println(fire);
 
-}
 
 void keyPressed() {
   if (key == 'd') {
@@ -241,7 +288,11 @@ void keyPressed() {
   }
 }
 
-
+void mousePressed() {
+ if(mouseX > 250 && mouseX <300 && mouseY > 225 && mouseY < 275) {
+   start = !start;
+ }
+}
 
 
 
