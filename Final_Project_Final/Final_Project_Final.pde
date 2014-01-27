@@ -86,6 +86,11 @@ boolean sonicJ;
 
 boolean endGame;
 
+PImage goomba;
+float gNum;
+float gMove;
+Goomba g1;
+
 ArrayList<Particle> particles = new ArrayList<Particle>();
 
 void setup() {
@@ -154,6 +159,9 @@ void setup() {
   sonicJ = false;
 
   endGame = false;
+
+  goomba = loadImage("goomba.png");
+  g1= new Goomba();
 
   particles.add(new Particle(width/2, 120));
 }
@@ -231,7 +239,7 @@ void draw() {
       rect(245, 115, 455, 380);
     }
 
-    if (start == true) {
+    if (mario == true && start == true || sonic == true && start == true) {
       clo=0;
       background(107, 136, 254);
       imageMode(CORNERS);
@@ -243,6 +251,7 @@ void draw() {
       b2.show();
       m1.show();
       p1.show();
+      g1.show();
       c.show();
       c.time();
       //println(bushNum);
@@ -309,8 +318,9 @@ void draw() {
     fire=false;
     pow.x=finalRectX;
   }
-  println(fireNum);
-  println(fire);
+  //  println(fireNum);
+  //  println(fire);
+  println(gNum);
 
   if (endGame == true) {
     particles.add(new Particle(100, 100));
@@ -347,6 +357,9 @@ void keyPressed() {
 
     mountNum= int(random(9));
     mountMove=50;
+
+    gNum = int(random(7));
+    gMove = 50;
   }
 
   if (key== 'h') {
