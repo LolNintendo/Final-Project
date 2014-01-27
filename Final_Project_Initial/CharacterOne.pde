@@ -1,25 +1,31 @@
 class CharacterOne {
-  //  PVector loc;
+  boolean marioReg;
+  boolean sonicReg;
 
   CharacterOne() {
-    //    loc = new PVector(50, 375);
+    marioReg = true;
+    sonicReg = true;
   }
 
 
   void show() {
     if (mario == true) {
-      image(marioRun, loc.x, loc.y);
-      
       if (marioJ == true) {
+        marioReg = false;
         image(marioJump, loc.x, loc.y);
+      }
+      if (marioReg == true) {
+        image(marioRun, loc.x, loc.y);
       }
     }
 
     if (sonic == true) {
-      image(sonicRun, loc.x, loc.y);
-      
       if (sonicJ == true) {
+        sonicReg = false;
         image(sonicJump, loc.x, loc.y);
+      }
+      if (sonicReg == true) {
+        image(sonicRun, loc.x, loc.y);
       }
     }
   }
@@ -31,7 +37,7 @@ class CharacterOne {
   void time() {
     currentTime= millis();
     if (currentTime-oldTime>1000) {
-      loc.y=375;
+      loc.y=315;
       oldTime=currentTime;
     }
   }

@@ -90,7 +90,7 @@ void setup() {
   fireNum=1;
   movePipe=0;
   pipeB=false;
-  loc = new PVector(50, 375);
+  loc = new PVector(15, 315);
   dPressed=0;
   size(500, 500);
   c = new CharacterOne();
@@ -365,10 +365,12 @@ void mousePressed() {
     instructions = !instructions;
   }
   if (chSelect == true && mouseX > 52 && mouseX < 198 && mouseY > 70 && mouseY < 130) {
-    mario = true;
+    mario = !mario;
+    sonic = false;
   }
   if (chSelect == true && mouseX > 275 && mouseX < 425 && mouseY > 30 && mouseY < 90) {
-    sonic = true;
+    sonic = !sonic;
+    mario = false;
   }
 }
 
