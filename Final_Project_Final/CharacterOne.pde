@@ -10,11 +10,11 @@ class CharacterOne {
 
   void show() {
     if (mario == true) {
-      if (marioJ == true) {
+      if (marioJ == true && loc.y < 375) {
         marioReg = false;
         image(marioJump, loc.x, loc.y);
       }
-      if (marioReg == true) {
+      else {
         image(marioRun, loc.x, loc.y);
       }
     }
