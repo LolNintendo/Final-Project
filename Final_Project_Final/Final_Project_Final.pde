@@ -84,7 +84,9 @@ boolean sonic;
 boolean marioJ;
 boolean sonicJ;
 
-boolean endgame
+boolean endGame;
+
+ArrayList<Particle> particles = new ArrayList<Particle>();
 
 void setup() {
   flower= new PVector(250, 375);
@@ -92,7 +94,7 @@ void setup() {
   fireNum=1;
   movePipe=0;
   pipeB=false;
-  loc = new PVector(15, 315);
+  loc = new PVector(25, 375);
   dPressed=0;
   size(500, 500);
   c = new CharacterOne();
@@ -147,9 +149,13 @@ void setup() {
 
   mario = false;
   sonic = false;
-  
+
   marioJ = false;
   sonicJ = false;
+
+  endGame = false;
+
+  particles.add(new Particle(width/2, 120));
 }
 
 void draw() {
@@ -230,8 +236,6 @@ void draw() {
       background(107, 136, 254);
       imageMode(CORNERS);
       image(startFloor, 0, -405, width, height);
-      c.show();
-      c.time();
       //println(cloudNum);
       cl.show();
       c2.show();
@@ -239,6 +243,8 @@ void draw() {
       b2.show();
       m1.show();
       p1.show();
+      c.show();
+      c.time();
       //println(bushNum);
       //println(millis());
       //println(pipeB);
@@ -305,6 +311,19 @@ void draw() {
   }
   println(fireNum);
   println(fire);
+
+  if (endGame == true) {
+    particles.add(new Particle(100, 100));
+    background(0);
+    for (int i = particles.size()-1; i >= 0; i--) {
+      Particle p = particles.get(i);
+      p.display();
+      p.update();
+      if (p.lives <= 0) {
+        particles.remove(i);
+      }
+    }
+  }
 }
 
 
@@ -343,14 +362,13 @@ void keyPressed() {
       fireNum+=1;
     }
   }
-  
+
   if (mario == true && key == 'h') {
     marioJ = true;
-    }
+  }
   if (sonic == true && key == 'h') {
     sonicJ = true;
-    }
-    
+  }
 }
 
 void mousePressed() {
