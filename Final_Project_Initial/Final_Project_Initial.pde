@@ -75,6 +75,15 @@ PImage startScreen;
 
 boolean chSelect;
 
+PImage selectM;
+PImage selectS;
+
+boolean mario;
+boolean sonic;
+
+boolean marioJ;
+boolean sonicJ;
+
 void setup() {
   flower= new PVector(250, 375);
   fire=false;
@@ -130,6 +139,15 @@ void setup() {
   instructions = false;
 
   chSelect = false;
+
+  selectM = loadImage("selectM.png");
+  selectS = loadImage("selectS.png");
+
+  mario = false;
+  sonic = false;
+  
+  marioJ = false;
+  sonicJ = false;
 }
 
 void draw() {
@@ -168,21 +186,42 @@ void draw() {
 
   else if (chSelect == true) {
     background(0);
-    //play button
+    //characters
+    imageMode(CENTER);
+    textAlign(CENTER);
     rectMode(CENTER);
+    image(selectM, 150, 270);
+    fill(193, 100, 255);
+    //MARIO
+    rect(125, 100, 146, 60);
+    fill(255);
+    text("MARIO", 125, 117);
+    image(selectS, 350, 250);
+    fill(193, 100, 255);
+    //SONIC
+    rect(350, 60, 150, 60);
+    fill(255);
+    text("SONIC", 350, 75);
+    //play button
     fill(75, 196, 88);
     rect(375, 425, 126, 50);
     fill(255);
     textAlign(CENTER);
     textSize(40);
     text("Play", 375, 440);
-    
-    
-    //images of possible characters
-    //image();
-    //image();
-    
-
+    //selection
+    if (mario == true) {
+      fill(254, 255, 15, 100);
+      noStroke();
+      rectMode(CORNERS);
+      rect(35, 160, 230, 375);
+    }
+    if (sonic == true) {
+      fill(254, 255, 15, 100);
+      noStroke();
+      rectMode(CORNERS);
+      rect(245, 115, 455, 380);
+    }
 
     if (start == true) {
       clo=0;
@@ -302,6 +341,14 @@ void keyPressed() {
       fireNum+=1;
     }
   }
+  
+  if (mario == true && key == 'h') {
+    marioJ = true;
+    }
+  if (sonic == true && key == 'h') {
+    sonicJ = true;
+    }
+    
 }
 
 void mousePressed() {
@@ -317,10 +364,14 @@ void mousePressed() {
   if (mouseX > 312 && mouseX < 438 && mouseY > 400 && mouseY < 450 && chSelect == false) {
     instructions = !instructions;
   }
+  if (chSelect == true && mouseX > 52 && mouseX < 198 && mouseY > 70 && mouseY < 130) {
+    mario = true;
+  }
+  if (chSelect == true && mouseX > 275 && mouseX < 425 && mouseY > 30 && mouseY < 90) {
+    sonic = true;
+  }
 }
 
 
-
-
-
+//check sonic mario variables
 
