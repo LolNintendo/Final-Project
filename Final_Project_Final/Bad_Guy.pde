@@ -11,9 +11,6 @@ class BadGuy {
   boolean badGuyDie;
 
   PImage badGuy;
-  
-  PVector headEllipse;
-  PVector bodyEllipse;
 
   BadGuy() {
     m=3;
@@ -26,24 +23,20 @@ class BadGuy {
     badGuyDie = false;
 
     badGuy = loadImage("Bowser.png");
-    
-    headEllipse = new PVector(badLoc.x - 40, badLoc.y - 50);
-    bodyEllipse = new PVector(badLoc.x + 10, badLoc.y + 5);
   }
 
   void display() {
-    fill(255,0,0);
-    ellipse(headEllipse.x, headEllipse.y, 60, 60);
-    ellipse(bodyEllipse.x, bodyEllipse.y, 90, 105);
+    fill(255, 0, 0, 0);
+    rectMode(CENTER);
+    rect(badLoc.x, badLoc.y, 100, 120);
     imageMode(CENTER);
     image(badGuy, badLoc.x, badLoc.y);
     //lives
     ///liveeeeessss
-    
-    
-    
-    
-    if (headEllipse.x-pow.x <= 55 && headEllipse.y-pow.y <= 55 || bodyEllipse.x-pow.x <= 70 && bodyEllipse.y - pow.y <= 77) {
+
+
+
+    if (pow.x + 25 > badLoc.x - 50 && pow.x - 25 < badLoc.x + 50 && pow.y + 25 > badLoc.y - 60 && pow.y - 25 < badLoc.y + 60) {
       badLives--;
       pow.x = finalRectX;
       fireNum=1;
