@@ -91,11 +91,19 @@ float gNum;
 float gMove;
 Goomba g1;
 
+float flyNum;
+float flyMove;
+float flyMoveY;
+Fly f1;
+float flyBall;
+boolean flyBallBoolean;
+
 PImage flowerPow;
 
 ArrayList<Particle> particles = new ArrayList<Particle>();
 
 void setup() {
+  flyBall=10;
   flower= new PVector(250, 390);
   fire=false;
   fireNum=1;
@@ -111,6 +119,9 @@ void setup() {
   b2 = new Bush2();
   m1= new Mount();
   p1 = new Pipe();
+
+  flyMove=4;
+  flyMoveY=3;
 
   battle = false;
 
@@ -164,6 +175,8 @@ void setup() {
 
   goomba = loadImage("goomba.png");
   g1= new Goomba();
+  f1=new Fly();
+flyBallBoolean= false;
 
   flowerPow = loadImage ("flower.png");
 
@@ -173,7 +186,6 @@ void setup() {
 void draw() {
   imageMode(CORNERS);
   image(startScreen, 0, 0, width, height);
-
   //start button 
   rectMode(CENTER);
   fill(75, 196, 88);
@@ -258,6 +270,7 @@ void draw() {
       g1.show();
       c.show();
       c.time();
+      f1.show();
       //println(bushNum);
       //println(millis());
       //println(pipeB);
@@ -359,6 +372,12 @@ void keyPressed() {
 
     gNum = int(random(7));
     gMove = 50;
+
+    flyNum= int(random(7));
+
+    if (dPressed>10) {
+      flyBall=random(6);
+    }
   }
 
   if (key== 'h') {
