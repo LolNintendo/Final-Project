@@ -63,8 +63,8 @@ class CharacterOne {
       }
     }
   }
-  
-  void finalShow(){
+
+  void finalShow() {
     if (mario == true) {
       if (marioJ == true && loc.y < 375) {
         marioReg = false;
@@ -85,6 +85,19 @@ class CharacterOne {
       }
     }
   }
-  
+
+  void attack() {
+    if (fireNum%2==0) {
+      fill(255,0,0);
+      ellipse(pow.x, pow.y, 50, 50);
+      image(fireBall, pow.x, pow.y); 
+      pow.x= pow.x+15;
+    }
+    if (pow.x>500) {
+      fireNum=1; 
+      fire=false;
+      pow.x=finalRectX;
+    }
+  }
 }
 

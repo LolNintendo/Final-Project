@@ -66,7 +66,7 @@ PImage kirbyJump;
 
 PImage bowser;
 PImage fireBall;
-PImage powerStar;
+PImage bowserFire;
 
 boolean start;
 boolean instructions;
@@ -143,7 +143,6 @@ void setup() {
 
   bowser = loadImage("Bowser.png");
   fireBall = loadImage("Fire.png");
-  powerStar = loadImage("Power.png");
 
   start = false;
   startScreen = loadImage("Start Screen.jpeg");
@@ -166,6 +165,8 @@ void setup() {
   g1= new Goomba();
 
   flowerPow = loadImage ("flower.png");
+  fireBall = loadImage ("Mario Fire.png");
+  bowserFire = loadImage ("Bowser Fire.png");
 
   particles.add(new Particle(width/2, 120));
 }
@@ -290,6 +291,7 @@ void draw() {
       if (tunnelEnd == true) {
         background(0);
         c.finalShow();
+        c.attack();
         bg1.display();
         bg1.attack();
         bg1.move();
@@ -298,24 +300,9 @@ void draw() {
         }
       }
 
-
-
-      //    if(fire==true &&){
-      //      ellipse(pow.x+50,pow.y,50,50); 
-      //      pow.x= pow.x+15;
-      //    }
-
       //println(finalRectX);
       //println(power);
-      if (fireNum%2==0) {
-        ellipse(pow.x+50, pow.y, 50, 50); 
-        pow.x= pow.x+15;
-      }
-      if (pow.x>500) {
-        fireNum=1; 
-        fire=false;
-        pow.x=finalRectX;
-      }
+
       //  println(fireNum);
       //  println(fire);
       println(gNum);
