@@ -8,7 +8,7 @@ class Pipe {
   } 
 
   void show() {
-    if (dPressed==100) {
+    if (dPressed==2) {
       pipeB=true;
       movePipe=15;
     } 

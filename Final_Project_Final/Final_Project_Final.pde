@@ -91,10 +91,12 @@ float gNum;
 float gMove;
 Goomba g1;
 
+PImage flowerPow;
+
 ArrayList<Particle> particles = new ArrayList<Particle>();
 
 void setup() {
-  flower= new PVector(250, 375);
+  flower= new PVector(250, 390);
   fire=false;
   fireNum=1;
   movePipe=0;
@@ -162,6 +164,8 @@ void setup() {
 
   goomba = loadImage("goomba.png");
   g1= new Goomba();
+
+  flowerPow = loadImage ("flower.png");
 
   particles.add(new Particle(width/2, 120));
 }
@@ -263,65 +267,60 @@ void draw() {
         rectMode(CORNERS);
         fill(150);
         rect(0, 250, width, 410);
-        rectMode(CENTER);
-        fill(0);
-        rect(battleRectX, loc.y, 50, 50);
+        imageMode(CENTER);
+        image(flowerPow, flower.x, flower.y); 
+        if (flower.x - battleRectX <= 40) {
+          power = true;
+        }
+        if (power==true) {
+          flower.x=600;
+          clo = 255;
+        }
+        c.battleShow();
         if (battleRectX < 50) {
           battleRectX+=movePipe;
         }
         if (battleRectX >= 400) {
           battleRectX+=movePipe;
         }
-        if (battleRectX >= width) {
-          tunnelEnd = true;
-        }
-        if (tunnelEnd == true) {
-
-          rectMode(CENTER);
-          background(255);
-          fill(clo);
-          rect(finalRectX, loc.y, 50, 50);
-          //  background(255);
-          bg1.display();
-          bg1.attack();
-          bg1.move();
-          if (finalRectX < 50) {
-            finalRectX+=movePipe;
-          }
+      }
+      if (battleRectX >= width) {
+        tunnelEnd = true;
+      }
+      if (tunnelEnd == true) {
+        background(0);
+        c.finalShow();
+        bg1.display();
+        bg1.attack();
+        bg1.move();
+        if (finalRectX < 50) {
+          finalRectX+=movePipe;
         }
       }
+
+
+
       //    if(fire==true &&){
       //      ellipse(pow.x+50,pow.y,50,50); 
       //      pow.x= pow.x+15;
       //    }
-    }
-  }
-  if (battle==true) {
-    fill(123, 43, 234);
-    rect(flower.x, flower.y, 30, 30); 
-    if (flower.x - battleRectX <= 40) {
-      power = true;
-    }
-  }
-  if (power==true) {
-    flower.x=600;
-    clo = 255;
-  }
-  //println(finalRectX);
-  //println(power);
-  if (fireNum%2==0) {
-    ellipse(pow.x+50, pow.y, 50, 50); 
-    pow.x= pow.x+15;
-  }
-  if (pow.x>500) {
-    fireNum=1; 
-    fire=false;
-    pow.x=finalRectX;
-  }
-  //  println(fireNum);
-  //  println(fire);
-  println(gNum);
 
+      //println(finalRectX);
+      //println(power);
+      if (fireNum%2==0) {
+        ellipse(pow.x+50, pow.y, 50, 50); 
+        pow.x= pow.x+15;
+      }
+      if (pow.x>500) {
+        fireNum=1; 
+        fire=false;
+        pow.x=finalRectX;
+      }
+      //  println(fireNum);
+      //  println(fire);
+      println(gNum);
+    }
+  }
   if (endGame == true) {
     particles.add(new Particle(100, 100));
     background(0);

@@ -5,26 +5,28 @@ class BadGuy {
   //int oldTime2;
   boolean shoot;
   int badLives;
-  PVector badLivesLoc;
+  PVector badLivesLoc1;
+  PVector badLivesLoc2;
+
   boolean badGuyDie;
-  
+
   PImage badGuy;
 
   BadGuy() {
     m=3;
     badLoc=new PVector(400, 400);
-    badLivesLoc= new PVector(400, 100);
+    badLivesLoc1= new PVector(75, 50);
+    badLivesLoc2= new PVector(450, 125);
     attackLoc= new PVector(badLoc.x, badLoc.y);
     shoot=false;
     badLives= 3;
     badGuyDie = false;
-    
-   
+
+    badGuy = loadImage("Bowser.png");
   }
 
   void display() {
-    rectMode(CENTER);
-    rect(badLoc.x, badLoc.y, 60, 60);
+    image(badGuy, badLoc.x, badLoc.y);
     //lives
     if (badLoc.x-pow.x <= 20 &&  badLoc.y-pow.y <= 20) {
       badLives--;
@@ -32,29 +34,30 @@ class BadGuy {
       fireNum=1;
     }
     if (badLives==3) {
-      rect(badLivesLoc.x, badLivesLoc.y, 20, 20);
-    rect(badLivesLoc.x + 30, badLivesLoc.y, 20, 20);
-    rect(badLivesLoc.x +60, badLivesLoc.y, 20, 20);
+      fill(255, 0, 0);
+      rectMode(CORNERS);
+      rect(badLivesLoc1.x, badLivesLoc1.y, badLivesLoc2.x, badLivesLoc2.y);
     }
-    
+
     if (badLives == 2) {
-    rect(badLivesLoc.x, badLivesLoc.y, 20, 20);
-    rect(badLivesLoc.x + 30, badLivesLoc.y, 20, 20);
+      badLivesLoc2.x=400;
     }
-    
+
     if (badLives == 1) {
-      rect(badLivesLoc.x, badLivesLoc.y, 20, 20);
+      fill(255, 0, 0);
+      rectMode(CORNERS);
+      rect(badLivesLoc1.x, badLivesLoc1.y, badLivesLoc2.x, badLivesLoc2.y);
     }
-    
+
     if (badLives == 0) {
       badGuyDie = true;
     }
-    
-    if (badGuyDie == true){
+
+    if (badGuyDie == true) {
       endGame = true;
     }
-    
-println(badLives);
+
+    println(badLives);
   }
   void move() {
 
