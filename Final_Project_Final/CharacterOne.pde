@@ -82,7 +82,7 @@ class CharacterOne {
     imageMode(CENTER);
 
 
-    fill(0, 255, 0);
+    fill(0, 255, 0, 0);
     ellipse(finalRectX, loc.y, 60, 60);
 
 

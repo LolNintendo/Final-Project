@@ -96,6 +96,7 @@ Goomba g1;
 
 PImage flowerPow;
 PImage battleScreen;
+PImage battleScreen2;
 
 boolean lifeLoss;
 
@@ -178,6 +179,8 @@ void setup() {
 
   battleScreen = loadImage("Bowser Battle.png");
   lifeLoss = false;
+  
+  battleScreen2 = loadImage("Bowser Battle Piece.png");
 
   particles.add(new Particle(width/2, 120));
 }
@@ -300,9 +303,23 @@ void draw() {
         tunnelEnd = true;
       }
       if (tunnelEnd == true) {
+        
+        
+        
+        
+        
+        
+        
+        
         background(0);
-        //imageMode(CORNERS);
-        //image(battleScreen, 0, 90, width, height);
+        imageMode(CORNERS);
+        image(battleScreen, 0, 100, width, height);
+        imageMode(CORNERS);
+        image(battleScreen2, 0, 415, width, 450);
+        
+        
+        
+        
         c.finalShow();
         c.attack();
         bg1.display();

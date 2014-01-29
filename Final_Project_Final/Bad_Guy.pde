@@ -104,7 +104,7 @@ class BadGuy {
     if (shoot==true) {
 
 
-      fill(0, 255, 0);
+      fill(0, 255, 0, 0);
       ellipse(attackLoc.x, attackLoc.y, 26, 26);
 
       image(bowserFire, attackLoc.x, attackLoc.y);
