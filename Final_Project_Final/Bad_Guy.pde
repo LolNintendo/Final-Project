@@ -22,6 +22,7 @@ class BadGuy {
   }
 
   void display() {
+    println(shoot);
     fill(255, 0, 0, 0);
     rectMode(CENTER);
     rect(badLoc.x, badLoc.y, 100, 120);
@@ -94,25 +95,29 @@ class BadGuy {
   }
 
   void attack() {
-    if (frameCount%100==0) {
+    if (frameCount%100==0 && lifeLoss == false) {
       attackLoc.x=badLoc.x;
       attackLoc.y=badLoc.y;
       shoot=true;
       //oldTime2 = currentTime2;
     }
     if (shoot==true) {
-      
-      
-      fill(0,255,0);
+
+
+      fill(0, 255, 0);
       ellipse(attackLoc.x, attackLoc.y, 26, 26);
-      
-      
-      
+
       image(bowserFire, attackLoc.x, attackLoc.y);
       attackLoc.x=attackLoc.x-15;
     }
     if (attackLoc.x<0) {
       shoot=false;
+    }
+
+    if (lifeLoss == true) {
+      shoot = false;
+      attackLoc.set(badLoc.x, badLoc.y);
+      lifeLoss = false;
     }
   }
 }

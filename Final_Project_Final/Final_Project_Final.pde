@@ -97,6 +97,8 @@ Goomba g1;
 PImage flowerPow;
 PImage battleScreen;
 
+boolean lifeLoss;
+
 ArrayList<Particle> particles = new ArrayList<Particle>();
 
 void setup() {
@@ -173,8 +175,9 @@ void setup() {
   flowerPow = loadImage ("flower.png");
   fireBall = loadImage ("Mario Fire.png");
   bowserFire = loadImage ("Bowser Fire.png");
-  
+
   battleScreen = loadImage("Bowser Battle.png");
+  lifeLoss = false;
 
   particles.add(new Particle(width/2, 120));
 }
@@ -298,8 +301,8 @@ void draw() {
       }
       if (tunnelEnd == true) {
         background(0);
-        imageMode(CORNERS);
-        image(battleScreen, 0, 90, width, height);
+        //imageMode(CORNERS);
+        //image(battleScreen, 0, 90, width, height);
         c.finalShow();
         c.attack();
         bg1.display();

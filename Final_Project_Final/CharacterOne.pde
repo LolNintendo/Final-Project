@@ -5,6 +5,7 @@ class CharacterOne {
   PImage life;
   PVector lifeLoc;
   boolean gameOver;
+  PVector finalLoc;
 
   CharacterOne() {
     marioReg = true;
@@ -13,6 +14,8 @@ class CharacterOne {
     life = loadImage("Power.png");
     lifeLoc = new PVector(200, 130);
     gameOver = false;
+    finalLoc = new PVector (finalRectX, loc.y);
+    lifeLoss = false;
   }
 
 
@@ -52,7 +55,6 @@ class CharacterOne {
   }
 
   void battleShow() {
-    println(lives);
     imageMode(CENTER);
 
     if (mario == true) {
@@ -127,12 +129,16 @@ class CharacterOne {
 
 
   void battleLives() {
-    if (attackLoc.x - finalRectX < 43) {
-      lives--;
+    if (attackLoc.dist(finalLoc) < 43) {
+      lifeLoss = true;
+      if (lifeLoss == true) {
+        lives--;
+      }
     }
   }
 
   void showLives() {
+    println(lives);
     if (lives == 3) {
       imageMode(CENTER);
       image(life, lifeLoc.x, lifeLoc.y);
