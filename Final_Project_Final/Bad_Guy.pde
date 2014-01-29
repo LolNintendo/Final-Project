@@ -84,12 +84,12 @@ class BadGuy {
   }
   void move() {
 
-    badLoc.y=badLoc.y-m;
+    badLoc.y = badLoc.y-m;
 
-    if (badLoc.y <=200) {
+    if (badLoc.y <=225) {
       m=-m;
     }
-    if (badLoc.y >= 400) {
+    if (badLoc.y >= 360) {
       m=-m;
     }
   }

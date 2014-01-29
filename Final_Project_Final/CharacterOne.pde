@@ -110,8 +110,10 @@ class CharacterOne {
     }
   }
 
+
   void attack() {
     if (fireNum%2==0) {
+      pow.y=loc.y;
       fill(255, 0, 0, 0);
       ellipse(pow.x, pow.y, 50, 50);
       image(fireBall, pow.x, pow.y); 
@@ -161,7 +163,9 @@ class CharacterOne {
 
   void youLose() {
     if (gameOver == true) {
-      //background(0);
+      background(0);
+      textSize(35);
+      text("Game Over", width/2, height/2);
     }
   }
 }

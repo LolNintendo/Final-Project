@@ -100,6 +100,16 @@ PImage battleScreen2;
 
 boolean lifeLoss;
 
+PImage tunnelScreen;
+
+PImage torch1;
+PImage torch2;
+
+boolean light1;
+boolean light2;
+
+float lightNum;
+
 ArrayList<Particle> particles = new ArrayList<Particle>();
 
 void setup() {
@@ -120,7 +130,7 @@ void setup() {
   p1 = new Pipe();
 
   battle = false;
-  badLoc=new PVector(400, 400);
+  badLoc=new PVector(400, 300);
   attackLoc= new PVector(badLoc.x, badLoc.y);
 
   tunnelEnd = false;
@@ -179,8 +189,16 @@ void setup() {
 
   battleScreen = loadImage("Bowser Battle.png");
   lifeLoss = false;
-  
+
   battleScreen2 = loadImage("Bowser Battle Piece.png");
+
+  tunnelScreen = loadImage("Stones.png");
+
+  torch1 = loadImage("Torch1.png");
+  torch2 = loadImage("Torch2.png");
+
+  light1 = true;
+  light2 = false;
 
   particles.add(new Particle(width/2, 120));
 }
@@ -278,10 +296,43 @@ void draw() {
       //println(pipeB);
       //println(battle);
       if (battle==true) {
+        println(light1);
         background(0);
-        rectMode(CORNERS);
-        fill(150);
-        rect(0, 250, width, 410);
+        imageMode(CORNERS);
+        image(tunnelScreen, 0, 0, width, 50);
+        image(tunnelScreen, 0, 50, width, 100);
+        image(tunnelScreen, 0, 100, width, 150);
+        image(tunnelScreen, 0, 150, width, 200);
+        image(tunnelScreen, 0, 200, width, 250);
+
+        image(tunnelScreen, 0, 410, width, 460);
+        image(tunnelScreen, 0, 460, width, height);
+
+        if (light1 == true) {
+
+          imageMode(CENTER);
+          image(torch1, 50, 300);
+          image(torch1, 150, 300);
+          image(torch1, 250, 300);
+          image(torch1, 350, 300);
+          image(torch1, 450, 300);
+        }
+
+        if (lightNum == 1) {
+          light2 = !light2;
+        }
+
+        if (light2 == true) {
+          imageMode(CENTER);
+          image(torch2, 50, 300);
+          image(torch2, 150, 300);
+          image(torch2, 250, 300);
+          image(torch2, 350, 300);
+          image(torch2, 450, 300);
+        }
+
+
+
         imageMode(CENTER);
         image(flowerPow, flower.x, flower.y); 
         if (flower.x - battleRectX <= 40) {
@@ -303,23 +354,13 @@ void draw() {
         tunnelEnd = true;
       }
       if (tunnelEnd == true) {
-        
-        
-        
-        
-        
-        
-        
-        
+
         background(0);
         imageMode(CORNERS);
         image(battleScreen, 0, 100, width, height);
         imageMode(CORNERS);
         image(battleScreen2, 0, 415, width, 450);
-        
-        
-        
-        
+
         c.finalShow();
         c.attack();
         bg1.display();
@@ -327,7 +368,7 @@ void draw() {
         bg1.move();
         c.battleLives();
         c.showLives();
-        c.youLose();
+        //c.youLose();
         if (finalRectX < 50) {
           finalRectX+=movePipe;
         }
@@ -340,6 +381,7 @@ void draw() {
       //  println(fire);
       //println(gNum);
     }
+    c.youLose();
   }
   if (endGame == true) {
     particles.add(new Particle(100, 100));
@@ -379,6 +421,8 @@ void keyPressed() {
 
     gNum = int(random(7));
     gMove = 50;
+    
+    lightNum = int(random(3));
   }
 
   if (key== 'h') {
