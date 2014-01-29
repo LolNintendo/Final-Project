@@ -34,6 +34,9 @@ Pipe p1;
 
 boolean battle;
 int battleRectX = -25;
+PVector attackLoc;
+PVector badLoc;
+
 
 boolean tunnelEnd;
 
@@ -92,6 +95,7 @@ float gMove;
 Goomba g1;
 
 PImage flowerPow;
+PImage battleScreen;
 
 ArrayList<Particle> particles = new ArrayList<Particle>();
 
@@ -113,6 +117,8 @@ void setup() {
   p1 = new Pipe();
 
   battle = false;
+  badLoc=new PVector(400, 400);
+  attackLoc= new PVector(badLoc.x, badLoc.y);
 
   tunnelEnd = false;
 
@@ -167,6 +173,8 @@ void setup() {
   flowerPow = loadImage ("flower.png");
   fireBall = loadImage ("Mario Fire.png");
   bowserFire = loadImage ("Bowser Fire.png");
+  
+  battleScreen = loadImage("Bowser Battle.png");
 
   particles.add(new Particle(width/2, 120));
 }
@@ -290,11 +298,16 @@ void draw() {
       }
       if (tunnelEnd == true) {
         background(0);
+        imageMode(CORNERS);
+        image(battleScreen, 0, 90, width, height);
         c.finalShow();
         c.attack();
         bg1.display();
         bg1.attack();
         bg1.move();
+        c.battleLives();
+        c.showLives();
+        c.youLose();
         if (finalRectX < 50) {
           finalRectX+=movePipe;
         }
@@ -305,7 +318,7 @@ void draw() {
 
       //  println(fireNum);
       //  println(fire);
-      println(gNum);
+      //println(gNum);
     }
   }
   if (endGame == true) {

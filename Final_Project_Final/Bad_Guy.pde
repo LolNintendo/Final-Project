@@ -1,6 +1,4 @@
 class BadGuy {
-  PVector badLoc;
-  PVector attackLoc;
   int m;
   //int oldTime2;
   boolean shoot;
@@ -14,10 +12,8 @@ class BadGuy {
 
   BadGuy() {
     m=3;
-    badLoc=new PVector(400, 400);
     badLivesLoc1= new PVector(75, 50);
-    badLivesLoc2= new PVector(400, 115);
-    attackLoc= new PVector(badLoc.x, badLoc.y);
+    badLivesLoc2= new PVector(400, 80);
     shoot=false;
     badLives= 5;
     badGuyDie = false;
@@ -83,7 +79,7 @@ class BadGuy {
       endGame = true;
     }
 
-    println(badLives);
+    //println(badLives);
   }
   void move() {
 
@@ -105,6 +101,13 @@ class BadGuy {
       //oldTime2 = currentTime2;
     }
     if (shoot==true) {
+      
+      
+      fill(0,255,0);
+      ellipse(attackLoc.x, attackLoc.y, 26, 26);
+      
+      
+      
       image(bowserFire, attackLoc.x, attackLoc.y);
       attackLoc.x=attackLoc.x-15;
     }
