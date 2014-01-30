@@ -10,7 +10,7 @@ class Pipe {
   } 
 
   void show() {
-    if (dPressed==2) {
+    if (dPressed==50) {
       pipeB=true;
       movePipe=15;
     } 
@@ -21,6 +21,8 @@ class Pipe {
     }
     if (loc.dist(pipeLoc) < 25) {
       battle = true;
+      gNum = 2;
+      lives = 3;
     }
   }
 }

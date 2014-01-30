@@ -1,25 +1,32 @@
 class CharacterOne {
   boolean marioReg;
   boolean sonicReg;
-  int lives;
   PImage life;
   PVector lifeLoc;
   boolean gameOver;
   PVector finalLoc;
+  int startLife;
+  PVector sLife;
+  boolean moveUp;
+  boolean fall;
 
   CharacterOne() {
     marioReg = true;
     sonicReg = true;
-    lives = 3;
     life = loadImage("Power.png");
     lifeLoc = new PVector(200, 130);
     gameOver = false;
     finalLoc = new PVector (finalRectX, loc.y);
     lifeLoss = false;
+    startLife = 3;
+    sLife = new PVector (35, 35);
+    moveUp = false;
+    fall = false;
   }
 
 
   void show() {
+    println(startLife);
     imageMode(CENTER);
     if (mario == true) {
       if (marioJ == true && loc.y < 375) {
@@ -27,6 +34,12 @@ class CharacterOne {
         image(marioJump, loc.x, loc.y);
       }
       else {
+
+
+        fill(0, 255, 0, 0);
+        ellipse(loc.x, loc.y, 50, 50);
+
+
         image(marioRun, loc.x, loc.y);
       }
     }
@@ -37,6 +50,11 @@ class CharacterOne {
         image(sonicJump, loc.x, loc.y);
       }
       else {
+
+        fill(0, 255, 0, 0);
+        ellipse(loc.x, loc.y, 60, 60);
+
+
         image(sonicRun, loc.x, loc.y);
       }
     }
@@ -48,11 +66,104 @@ class CharacterOne {
   }
   void time() {
     currentTime= millis();
-    if (currentTime-oldTime>1000) {
+    if (currentTime-oldTime>1500) {
       loc.y=375;
       oldTime=currentTime;
     }
   }
+
+  void startLives() {
+    if (mario == true) {
+      if (gLoc.dist(loc) < 25) {
+        startLife--;
+        gLoc.x = 700;
+      }
+      if (startLife == 3) {
+        imageMode(CENTER);
+        image(life, sLife.x, sLife.y);
+        image(life, sLife.x + 35, sLife.y);
+        image(life, sLife.x + 70, sLife.y);
+      }
+      if (startLife == 2) {
+        imageMode(CENTER);
+        image(life, sLife.x, sLife.y);
+        image(life, sLife.x + 35, sLife.y);
+      }
+      if (startLife == 1) {
+        imageMode(CENTER);
+        image(life, sLife.x, sLife.y);
+      }
+      if (startLife == 0) {
+        //gameOver = true;
+        if (loc.y > 100) {
+          moveUp = true;
+          if (moveUp ==true) {
+            loc.y -= 15;
+          }
+        }
+        if (loc.y <= 100) {
+          moveUp = false;
+          fall = true;
+        }
+        if (fall == true) {
+          loc.y += 20;
+          loc.x += 1;
+          if (loc.y > height) {
+            gameOver = true;
+            fill(255,0,0);
+            textSize(35);
+            text("Game Over", width/2, height/2);
+          }
+        }
+      }
+    }
+
+    if (sonic == true) {
+      if (gLoc.dist(loc) < 35) {
+        startLife--;
+        gLoc.x = 700;
+      }
+      if (startLife == 3) {
+        imageMode(CENTER);
+        image(life, sLife.x, sLife.y);
+        image(life, sLife.x + 35, sLife.y);
+        image(life, sLife.x + 70, sLife.y);
+      }
+      if (startLife == 2) {
+        imageMode(CENTER);
+        image(life, sLife.x, sLife.y);
+        image(life, sLife.x + 35, sLife.y);
+      }
+      if (startLife == 1) {
+        imageMode(CENTER);
+        image(life, sLife.x, sLife.y);
+      }
+      if (startLife == 0) {
+        //gameOver = true;
+        if (loc.y > 150) {
+          moveUp = true;
+          if (moveUp ==true) {
+            loc.y -= 15;
+          }
+        }
+        if (loc.y <= 150) {
+          moveUp = false;
+          fall = true;
+        }
+        if (fall == true) {
+          loc.y += 20;
+          loc.x += 1;
+          if (loc.y > height) {
+            gameOver = true;
+            fill(0,255,0);
+            textSize(35);
+            text("Game Over", width/2, height/2);
+          }
+        }
+      }
+    }
+  }
+
 
   void battleShow() {
     imageMode(CENTER);
@@ -81,13 +192,8 @@ class CharacterOne {
   void finalShow() {  
     imageMode(CENTER);
 
-
     fill(0, 255, 0, 0);
     ellipse(finalRectX, loc.y, 60, 60);
-
-
-
-
 
     if (mario == true) {
       if (marioJ == true && loc.y < 375) {
@@ -125,10 +231,6 @@ class CharacterOne {
       pow.x=finalRectX;
     }
   }
-
-
-
-
 
   void battleLives() {
     if (attackLoc.dist(finalLoc) < 43) {
@@ -169,8 +271,4 @@ class CharacterOne {
     }
   }
 }
-
-//FIX MARIO LIVESSSSSS
-//DIES WHEN NOT DEAD
-//background
 

@@ -93,6 +93,8 @@ PImage goomba;
 float gNum;
 float gMove;
 Goomba g1;
+PVector gLoc;
+
 
 PImage flowerPow;
 PImage battleScreen;
@@ -109,6 +111,10 @@ boolean light1;
 boolean light2;
 
 float lightNum;
+
+PImage winScreen;
+int lives;
+
 
 ArrayList<Particle> particles = new ArrayList<Particle>();
 
@@ -182,6 +188,8 @@ void setup() {
 
   goomba = loadImage("goomba.png");
   g1= new Goomba();
+  gLoc= new PVector(width + 100, height-115);
+
 
   flowerPow = loadImage ("flower.png");
   fireBall = loadImage ("Mario Fire.png");
@@ -199,6 +207,10 @@ void setup() {
 
   light1 = true;
   light2 = false;
+
+  lives = 3;
+
+  winScreen = loadImage("winScreen.png");
 
   particles.add(new Particle(width/2, 120));
 }
@@ -291,12 +303,13 @@ void draw() {
       g1.show();
       c.show();
       c.time();
+      c.startLives();
       //println(bushNum);
       //println(millis());
       //println(pipeB);
       //println(battle);
       if (battle==true) {
-        println(light1);
+        //println(light1);
         background(0);
         imageMode(CORNERS);
         image(tunnelScreen, 0, 0, width, 50);
@@ -385,7 +398,8 @@ void draw() {
   }
   if (endGame == true) {
     particles.add(new Particle(100, 100));
-    background(0);
+    imageMode(CORNERS);
+    image(winScreen, 0, 0, width, height);
     for (int i = particles.size()-1; i >= 0; i--) {
       Particle p = particles.get(i);
       p.display();
@@ -394,6 +408,9 @@ void draw() {
         particles.remove(i);
       }
     }
+    fill(0, 255, 0);
+    textSize(50);
+    text("You Win!", 350, 75);
   }
 }
 
@@ -421,7 +438,7 @@ void keyPressed() {
 
     gNum = int(random(7));
     gMove = 50;
-    
+
     lightNum = int(random(3));
   }
 
