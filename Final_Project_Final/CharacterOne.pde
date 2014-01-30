@@ -22,10 +22,13 @@ class CharacterOne {
 
 
   void show() {
-    
+
     //displays characters and their jump images
+
+    //println(startLife);
     
-    println(startLife);
+    
+    
     imageMode(CENTER);
     if (mario == true) {
       if (marioJ == true && loc.y < 375) {
@@ -55,11 +58,11 @@ class CharacterOne {
     }
   }
 
-//function for character to jump
+  //function for character to jump
   void jump() {
     loc.y=250;
   }
-  
+
   //timer that controls when the character falls back down from a jump
   void time() {
     currentTime= millis();
@@ -69,47 +72,49 @@ class CharacterOne {
     }
   }
 
-//lives in first stage and their representation 
+  //lives in first stage and their representation 
   void startLives() {
     if (mario == true) {
       if (gLoc.dist(loc) < 25) {
         startLife--;
         gLoc.x = 700;
       }
-      if (startLife == 3) {
-        imageMode(CENTER);
-        image(life, sLife.x, sLife.y);
-        image(life, sLife.x + 35, sLife.y);
-        image(life, sLife.x + 70, sLife.y);
-      }
-      if (startLife == 2) {
-        imageMode(CENTER);
-        image(life, sLife.x, sLife.y);
-        image(life, sLife.x + 35, sLife.y);
-      }
-      if (startLife == 1) {
-        imageMode(CENTER);
-        image(life, sLife.x, sLife.y);
-      }
-      if (startLife == 0) {
-        if (loc.y > 100) {
-          moveUp = true;
-          if (moveUp ==true) {
-            loc.y -= 15;
+      if (lifeShow == true) {
+        if (startLife == 3) {
+          imageMode(CENTER);
+          image(life, sLife.x, sLife.y);
+          image(life, sLife.x + 35, sLife.y);
+          image(life, sLife.x + 70, sLife.y);
+        }
+        if (startLife == 2) {
+          imageMode(CENTER);
+          image(life, sLife.x, sLife.y);
+          image(life, sLife.x + 35, sLife.y);
+        }
+        if (startLife == 1) {
+          imageMode(CENTER);
+          image(life, sLife.x, sLife.y);
+        }
+        if (startLife == 0) {
+          if (loc.y > 100) {
+            moveUp = true;
+            if (moveUp ==true) {
+              loc.y -= 15;
+            }
           }
-        }
-        if (loc.y <= 100) {
-          moveUp = false;
-          fall = true;
-        }
-        if (fall == true) {
-          loc.y += 20;
-          loc.x += 1;
-          if (loc.y > height) {
-            gameOver = true;
-            fill(255,0,0);
-            textSize(35);
-            text("Game Over", width/2, height/2);
+          if (loc.y <= 100) {
+            moveUp = false;
+            fall = true;
+          }
+          if (fall == true) {
+            loc.y += 20;
+            loc.x += 1;
+            if (loc.y > height) {
+              gameOver = true;
+              fill(255, 0, 0);
+              textSize(35);
+              text("Game Over", width/2, height/2);
+            }
           }
         }
       }
@@ -120,48 +125,50 @@ class CharacterOne {
         startLife--;
         gLoc.x = 700;
       }
-      if (startLife == 3) {
-        imageMode(CENTER);
-        image(life, sLife.x, sLife.y);
-        image(life, sLife.x + 35, sLife.y);
-        image(life, sLife.x + 70, sLife.y);
-      }
-      if (startLife == 2) {
-        imageMode(CENTER);
-        image(life, sLife.x, sLife.y);
-        image(life, sLife.x + 35, sLife.y);
-      }
-      if (startLife == 1) {
-        imageMode(CENTER);
-        image(life, sLife.x, sLife.y);
-      }
-      if (startLife == 0) {
-        //gameOver = true;
-        if (loc.y > 150) {
-          moveUp = true;
-          if (moveUp ==true) {
-            loc.y -= 15;
+      if (lifeShow == true) {
+        if (startLife == 3) {
+          imageMode(CENTER);
+          image(life, sLife.x, sLife.y);
+          image(life, sLife.x + 35, sLife.y);
+          image(life, sLife.x + 70, sLife.y);
+        }
+        if (startLife == 2) {
+          imageMode(CENTER);
+          image(life, sLife.x, sLife.y);
+          image(life, sLife.x + 35, sLife.y);
+        }
+        if (startLife == 1) {
+          imageMode(CENTER);
+          image(life, sLife.x, sLife.y);
+        }
+        if (startLife == 0) {
+          //gameOver = true;
+          if (loc.y > 150) {
+            moveUp = true;
+            if (moveUp ==true) {
+              loc.y -= 15;
+            }
           }
-        }
-        if (loc.y <= 150) {
-          moveUp = false;
-          fall = true;
-        }
-        if (fall == true) {
-          loc.y += 20;
-          loc.x += 1;
-          if (loc.y > height) {
-            gameOver = true;
-            fill(0,255,0);
-            textSize(35);
-            text("Game Over", width/2, height/2);
+          if (loc.y <= 150) {
+            moveUp = false;
+            fall = true;
+          }
+          if (fall == true) {
+            loc.y += 20;
+            loc.x += 1;
+            if (loc.y > height) {
+              gameOver = true;
+              fill(0, 255, 0);
+              textSize(35);
+              text("Game Over", width/2, height/2);
+            }
           }
         }
       }
     }
   }
 
-//battle character funcions
+  //battle character funcions
   void battleShow() {
     imageMode(CENTER);
 
@@ -186,8 +193,12 @@ class CharacterOne {
     }
   }
 
-//Bowser battle character
-  void finalShow() {  
+  //Bowser battle character
+  void finalShow() {
+    
+    
+  //println(lifeShow);  
+    lifeShow = false;
     imageMode(CENTER);
 
     fill(0, 255, 0, 0);
@@ -215,7 +226,7 @@ class CharacterOne {
   }
 
 
-//character attack
+  //character attack
   void attack() {
     if (fireNum%2==0) {
       pow.y=loc.y;
@@ -231,7 +242,7 @@ class CharacterOne {
     }
   }
 
-//character lives during battle
+  //character lives during battle
   void battleLives() {
     if (attackLoc.dist(finalLoc) < 43) {
       lifeLoss = true;
@@ -241,8 +252,10 @@ class CharacterOne {
     }
   }
 
-//displaying the character's lives
+  //displaying the character's lives
   void showLives() {
+    
+    
     println(lives);
     if (lives == 3) {
       imageMode(CENTER);
@@ -264,7 +277,7 @@ class CharacterOne {
     }
   }
 
-//losing the game; game over
+  //losing the game; game over
   void youLose() {
     if (gameOver == true) {
       background(0);

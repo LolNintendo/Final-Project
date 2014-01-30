@@ -149,6 +149,8 @@ boolean gameOver;
 //lives
 int startLife;
 
+boolean lifeShow;
+
 //firework
 ArrayList<Particle> particles = new ArrayList<Particle>();
 
@@ -244,11 +246,13 @@ void setup() {
 
   winScreen = loadImage("winScreen.png");
 
-  info = loadImage("Info.jpg");
+  info = loadImage("Info.png");
 
   gameOver = false;
 
   startLife = 3;
+
+  lifeShow = true;
 
   particles.add(new Particle(width/2, 120));
 }
@@ -280,7 +284,7 @@ void draw() {
   if (instructions == true) {
     background(0);
     imageMode(CENTER);
-    image(info, width/2, height/2);
+    image(info, -25, height/2);
     //home button from info back to start screen
     rectMode(CENTER);
     fill(75, 196, 88);
@@ -354,7 +358,9 @@ void draw() {
       //character display, lives, and jump timer
       c.show();
       c.time();
-      c.startLives();
+      if (lifeShow == true) {
+        c.startLives();
+      }
       //println(bushNum);
       //println(millis());
       //println(pipeB);
@@ -363,6 +369,7 @@ void draw() {
         //character in tunnel
         //println(light1);
         startLife = 3;
+        lifeShow = false;
         //backgound
         background(0);
         imageMode(CORNERS);
@@ -572,5 +579,4 @@ void mousePressed() {
     mario = false;
   }
 }
-
 
