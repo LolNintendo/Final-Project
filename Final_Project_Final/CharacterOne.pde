@@ -22,6 +22,9 @@ class CharacterOne {
 
 
   void show() {
+    
+    //displays characters and their jump images
+    
     println(startLife);
     imageMode(CENTER);
     if (mario == true) {
@@ -30,11 +33,8 @@ class CharacterOne {
         image(marioJump, loc.x, loc.y);
       }
       else {
-
-
         fill(0, 255, 0, 0);
         ellipse(loc.x, loc.y, 50, 50);
-
 
         image(marioRun, loc.x, loc.y);
       }
@@ -50,16 +50,17 @@ class CharacterOne {
         fill(0, 255, 0, 0);
         ellipse(loc.x, loc.y, 60, 60);
 
-
         image(sonicRun, loc.x, loc.y);
       }
     }
   }
 
-
+//function for character to jump
   void jump() {
     loc.y=250;
   }
+  
+  //timer that controls when the character falls back down from a jump
   void time() {
     currentTime= millis();
     if (currentTime-oldTime>1500) {
@@ -68,6 +69,7 @@ class CharacterOne {
     }
   }
 
+//lives in first stage and their representation 
   void startLives() {
     if (mario == true) {
       if (gLoc.dist(loc) < 25) {
@@ -159,7 +161,7 @@ class CharacterOne {
     }
   }
 
-
+//battle character funcions
   void battleShow() {
     imageMode(CENTER);
 
@@ -184,6 +186,7 @@ class CharacterOne {
     }
   }
 
+//Bowser battle character
   void finalShow() {  
     imageMode(CENTER);
 
@@ -212,6 +215,7 @@ class CharacterOne {
   }
 
 
+//character attack
   void attack() {
     if (fireNum%2==0) {
       pow.y=loc.y;
@@ -227,6 +231,7 @@ class CharacterOne {
     }
   }
 
+//character lives during battle
   void battleLives() {
     if (attackLoc.dist(finalLoc) < 43) {
       lifeLoss = true;
@@ -236,6 +241,7 @@ class CharacterOne {
     }
   }
 
+//displaying the character's lives
   void showLives() {
     println(lives);
     if (lives == 3) {
@@ -258,6 +264,7 @@ class CharacterOne {
     }
   }
 
+//losing the game; game over
   void youLose() {
     if (gameOver == true) {
       background(0);

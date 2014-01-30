@@ -21,6 +21,7 @@ class BadGuy {
     badGuy = loadImage("Bowser.png");
   }
 
+  //displays bad guy
   void display() {
     println(shoot);
     fill(255, 0, 0, 0);
@@ -28,16 +29,15 @@ class BadGuy {
     rect(badLoc.x, badLoc.y, 100, 120);
     imageMode(CENTER);
     image(badGuy, badLoc.x, badLoc.y);
-    //lives
-    ///liveeeeessss
 
-
-
+    //if hit by the character's fireball, loses a life and the fireball is reset
     if (pow.x + 25 > badLoc.x - 50 && pow.x - 25 < badLoc.x + 50 && pow.y + 25 > badLoc.y - 60 && pow.y - 25 < badLoc.y + 60) {
       badLives--;
       pow.x = finalRectX;
       fireNum=1;
     }
+
+    //displaying the bad guy's lives (portions of rectangle)
     if (badLives == 5) {
       fill(255, 0, 0);
       rectMode(CORNERS);
@@ -73,15 +73,20 @@ class BadGuy {
     }
 
     if (badLives == 0) {
+      //bad guy dies
       badGuyDie = true;
     }
 
     if (badGuyDie == true) {
+      //end of the game
       endGame = true;
     }
-
-    //println(badLives);
   }
+
+  //println(badLives);
+
+
+  //moves bad guy in constant up-down axis
   void move() {
 
     badLoc.y = badLoc.y-m;
@@ -94,6 +99,7 @@ class BadGuy {
     }
   }
 
+  //bad guy attacks by firing at character
   void attack() {
     if (frameCount%100==0 && lifeLoss == false) {
       attackLoc.x=badLoc.x;
@@ -101,8 +107,9 @@ class BadGuy {
       shoot=true;
       //oldTime2 = currentTime2;
     }
-    if (shoot==true) {
 
+    //shoots fire at character
+    if (shoot==true) {
 
       fill(0, 255, 0, 0);
       ellipse(attackLoc.x, attackLoc.y, 26, 26);
@@ -114,6 +121,7 @@ class BadGuy {
       shoot=false;
     }
 
+    //reset lives
     if (lifeLoss == true) {
       shoot = false;
       attackLoc.set(badLoc.x, badLoc.y);

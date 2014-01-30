@@ -9,6 +9,7 @@ class Pipe {
     pipe = loadImage("pipe.png");
   } 
 
+//dispays pipe after 75 moves and creates stage transition
   void show() {
     if (dPressed == 65){
       gNum = 2;

@@ -5,6 +5,8 @@ class Cloud {
     cloudB=false;
     cloudLoc= new PVector(width+100, 50);
   } 
+  
+  //displaying the cloud and moving it
   void show() {
     imageMode(CENTER);
     image(Cloud1,cloudLoc.x, cloudLoc.y);
