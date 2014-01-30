@@ -5,6 +5,8 @@ class Bush2 {
     bushB=false;
     bushLoc= new PVector(width+100, height-155);
   } 
+
+  //displays the bush and moves it
   void show() {
     imageMode(CENTER);
     image(Bush2, bushLoc.x, bushLoc.y);
@@ -13,8 +15,8 @@ class Bush2 {
     }
     if (bushB==true) {
       bushLoc.x= bushLoc.x- bushTwoMove;
-  bushTwoMove=0;  
-  }
+      bushTwoMove=0;
+    }
     if (bushLoc.x<-25) {
       bushTwoNum=2;
       bushB=false;

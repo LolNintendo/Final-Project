@@ -13,6 +13,8 @@ class Particle{
     lives = 200;
   }
   
+  //displays and updates an arrayList of circular particles that fade away
+  
   void display(){
     fill(random(255), random(255), random(255));
     ellipse(loc.x, loc.y, d, d);

@@ -1,12 +1,17 @@
 class Goomba {
-  PVector gLoc;
   boolean gB;
   
   Goomba() {
     gB=false;
-    gLoc= new PVector(width + 100, height-120);
   } 
+  
+  //displays goomba at random intervals
+  //moves the goomba
   void show() {
+    
+    fill(0,255,0,0);
+    ellipse(gLoc.x, gLoc.y,40,40);
+    
     imageMode(CENTER);
     image(goomba, gLoc.x, gLoc.y);
     gLoc.x-=1;
