@@ -115,6 +115,11 @@ float lightNum;
 PImage winScreen;
 int lives;
 
+PImage info;
+
+boolean gameOver;
+
+int startLife;
 
 ArrayList<Particle> particles = new ArrayList<Particle>();
 
@@ -212,6 +217,12 @@ void setup() {
 
   winScreen = loadImage("winScreen.png");
 
+  info = loadImage("Info.jpg");
+
+  gameOver = false;
+
+  startLife = 3;
+
   particles.add(new Particle(width/2, 120));
 }
 
@@ -239,6 +250,8 @@ void draw() {
 
   if (instructions == true) {
     background(0);
+    imageMode(CENTER);
+    image(info, width/2, height/2);
     //home button
     rectMode(CENTER);
     fill(75, 196, 88);
@@ -310,6 +323,7 @@ void draw() {
       //println(battle);
       if (battle==true) {
         //println(light1);
+        startLife = 3;
         background(0);
         imageMode(CORNERS);
         image(tunnelScreen, 0, 0, width, 50);
@@ -367,6 +381,7 @@ void draw() {
         tunnelEnd = true;
       }
       if (tunnelEnd == true) {
+        startLife = lives;
 
         background(0);
         imageMode(CORNERS);
@@ -410,7 +425,7 @@ void draw() {
     }
     fill(0, 255, 0);
     textSize(50);
-    text("You Win!", 350, 75);
+    text("You Win!", 350, 50);
   }
 }
 
@@ -436,7 +451,10 @@ void keyPressed() {
     mountNum= int(random(9));
     mountMove=50;
 
-    gNum = int(random(7));
+    if (dPressed < 60) {
+
+      gNum = int(random(7));
+    }
     gMove = 50;
 
     lightNum = int(random(3));

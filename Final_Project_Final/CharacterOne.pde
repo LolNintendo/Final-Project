@@ -3,9 +3,7 @@ class CharacterOne {
   boolean sonicReg;
   PImage life;
   PVector lifeLoc;
-  boolean gameOver;
   PVector finalLoc;
-  int startLife;
   PVector sLife;
   boolean moveUp;
   boolean fall;
@@ -15,10 +13,8 @@ class CharacterOne {
     sonicReg = true;
     life = loadImage("Power.png");
     lifeLoc = new PVector(200, 130);
-    gameOver = false;
     finalLoc = new PVector (finalRectX, loc.y);
     lifeLoss = false;
-    startLife = 3;
     sLife = new PVector (35, 35);
     moveUp = false;
     fall = false;
@@ -94,7 +90,6 @@ class CharacterOne {
         image(life, sLife.x, sLife.y);
       }
       if (startLife == 0) {
-        //gameOver = true;
         if (loc.y > 100) {
           moveUp = true;
           if (moveUp ==true) {

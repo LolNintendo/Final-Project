@@ -10,18 +10,21 @@ class Pipe {
   } 
 
   void show() {
-    if (dPressed==50) {
+    if (dPressed == 65){
+      gNum = 2;
+    }
+    if (dPressed==75) {
       pipeB=true;
       movePipe=15;
+      startLife = 3;
     } 
     if (pipeB==true) {
       imageMode(CENTER);
       image(pipe, pipeLoc.x, pipeLoc.y);
       loc.x=loc.x+movePipe;
     }
-    if (loc.dist(pipeLoc) < 25) {
+    if (loc.dist(pipeLoc) < 25 || loc.x > width) {
       battle = true;
-      gNum = 2;
       lives = 3;
     }
   }
