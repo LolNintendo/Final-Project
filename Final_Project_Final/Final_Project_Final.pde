@@ -336,7 +336,7 @@ void draw() {
     }
 
     //game start
-    if (mario == true && start == true || sonic == true && start == true) {
+    if (mario == true && start == true && lifeShow == true || sonic == true && start == true && lifeShow == true) {
       clo=0;
       //background display
       background(107, 136, 254);
@@ -358,115 +358,118 @@ void draw() {
       //character display, lives, and jump timer
       c.show();
       c.time();
-      if (lifeShow == true) {
-        c.startLives();
-      }
-      //println(bushNum);
-      //println(millis());
-      //println(pipeB);
-      //println(battle);
-      if (battle==true) {
-        //character in tunnel
-        //println(light1);
-        startLife = 3;
-        lifeShow = false;
-        //backgound
-        background(0);
-        imageMode(CORNERS);
-        //torches
-        image(tunnelScreen, 0, 0, width, 50);
-        image(tunnelScreen, 0, 50, width, 100);
-        image(tunnelScreen, 0, 100, width, 150);
-        image(tunnelScreen, 0, 150, width, 200);
-        image(tunnelScreen, 0, 200, width, 250);
+      //if (lifeShow == true) {
+      c.startLives();
+    }
+    //println(bushNum);
+    //println(millis());
+    //println(pipeB);
+    //println(battle);
+    if (battle==true) {
+      //character in tunnel
+      //println(light1);
+      startLife = 3;
+      lifeShow = false;
+      //backgound
+      background(0);
+      imageMode(CORNERS);
+      //torches
+      image(tunnelScreen, 0, 0, width, 50);
+      image(tunnelScreen, 0, 50, width, 100);
+      image(tunnelScreen, 0, 100, width, 150);
+      image(tunnelScreen, 0, 150, width, 200);
+      image(tunnelScreen, 0, 200, width, 250);
 
-        image(tunnelScreen, 0, 410, width, 460);
-        image(tunnelScreen, 0, 460, width, height);
+      image(tunnelScreen, 0, 410, width, 460);
+      image(tunnelScreen, 0, 460, width, height);
 
-        //booleans that switch flame image to give real life appearance
-        if (light1 == true) {
+      //booleans that switch flame image to give real life appearance
+      if (light1 == true) {
 
-          imageMode(CENTER);
-          image(torch1, 50, 300);
-          image(torch1, 150, 300);
-          image(torch1, 250, 300);
-          image(torch1, 350, 300);
-          image(torch1, 450, 300);
-        }
-
-        if (lightNum == 1) {
-          light2 = !light2;
-        }
-
-        if (light2 == true) {
-          imageMode(CENTER);
-          image(torch2, 50, 300);
-          image(torch2, 150, 300);
-          image(torch2, 250, 300);
-          image(torch2, 350, 300);
-          image(torch2, 450, 300);
-        }
-
-        //appearance of flower that gives power
         imageMode(CENTER);
-        image(flowerPow, flower.x, flower.y); 
-        if (flower.x - battleRectX <= 40) {
-          power = true;
-        }
-        //boolean that controls if character has power
-        if (power==true) {
-          flower.x=600;
-          clo = 255;
-        }
-        c.battleShow();
-        //smooth movement of character between stages
-        if (battleRectX < 50) {
-          battleRectX+=movePipe;
-        }
-        if (battleRectX >= 400) {
-          battleRectX+=movePipe;
-        }
+        image(torch1, 50, 300);
+        image(torch1, 150, 300);
+        image(torch1, 250, 300);
+        image(torch1, 350, 300);
+        image(torch1, 450, 300);
       }
-      if (battleRectX >= width) {
-        tunnelEnd = true;
+
+      if (lightNum == 1) {
+        light2 = !light2;
       }
-      //transition into final stage
-      if (tunnelEnd == true) {
-        startLife = lives;
 
-        //battle backgorund
+      if (light2 == true) {
+        imageMode(CENTER);
+        image(torch2, 50, 300);
+        image(torch2, 150, 300);
+        image(torch2, 250, 300);
+        image(torch2, 350, 300);
+        image(torch2, 450, 300);
+      }
 
-        background(0);
-        imageMode(CORNERS);
-        image(battleScreen, 0, 100, width, height);
-        imageMode(CORNERS);
-        image(battleScreen2, 0, 415, width, 450);
+      //appearance of flower that gives power
+      imageMode(CENTER);
+      image(flowerPow, flower.x, flower.y); 
+      if (flower.x - battleRectX <= 40) {
+        power = true;
+      }
+      //boolean that controls if character has power
+      if (power==true) {
+        flower.x=600;
+        clo = 255;
+      }
+      c.battleShow();
+      //smooth movement of character between stages
+      if (battleRectX < 50) {
+        battleRectX+=movePipe;
+      }
+      if (battleRectX >= 400) {
+        battleRectX+=movePipe;
+      }
+    }
+    if (battleRectX >= width) {
+      tunnelEnd = true;
+    }
+    //transition into final stage
+    if (tunnelEnd == true) {
+      startLife = lives;
 
-        //displays characters, their attacks or movements, and lives
-        c.finalShow();
-        c.attack();
-        bg1.display();
-        bg1.attack();
-        bg1.move();
+      //battle backgorund
+
+      background(0);
+      imageMode(CORNERS);
+      image(battleScreen, 0, 100, width, height);
+      imageMode(CORNERS);
+      image(battleScreen2, 0, 415, width, 450);
+
+      //displays characters, their attacks or movements, and lives
+      c.finalShow();
+      c.attack();
+      c.time();
+      bg1.display();
+      bg1.attack();
+      bg1.move();
+      if (lifeShow == false) {
         c.battleLives();
         c.showLives();
-        //c.youLose();
-        //smooth transtions between stages
-        if (finalRectX < 50) {
-          finalRectX+=movePipe;
-        }
       }
-
-      //println(finalRectX);
-      //println(power);
-
-      //  println(fireNum);
-      //  println(fire);
-      //println(gNum);
+      //c.youLose();
+      //smooth transtions between stages
+      if (finalRectX < 50) {
+        finalRectX+=movePipe;
+      }
     }
-    //game lost
-    c.youLose();
+
+    //println(finalRectX);
+    //println(power);
+
+    //  println(fireNum);
+    //  println(fire);
+    //println(gNum);
   }
+  //game lost
+  c.youLose();
+
   //if you have won
   if (endGame == true) {
     //firework
